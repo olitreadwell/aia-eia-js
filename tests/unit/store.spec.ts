@@ -83,3 +83,46 @@ describe("store.ts", () => {
     expect(resultDataSections[2].length).toEqual(1);
   });
 });
+
+describe("store.ts choiceData", () => {
+  it("keeps a non-empty French label when a checkbox choice has the same text in both languages", () => {
+    const surveyJSON = {
+      pages: [
+        {
+          name: "page1",
+          elements: [
+            {
+              type: "checkbox",
+              name: "q1-RS",
+              title: { default: "Question", fr: "Question" },
+              choices: [
+                {
+                  value: "item1",
+                  text: { default: "Surveillance", fr: "Surveillance" }
+                },
+                { value: "item2", text: { default: "Other", fr: "Autre" } }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+
+    const result = new SurveyModel(surveyJSON);
+    result.locale = "fr";
+    result.data = { "q1-RS": ["item1"] };
+
+    store.commit("updateResult", result);
+
+    const sections = store.getters.resultDataSections;
+    const checkboxResult = sections[1].find(
+      (item: any) => item.name === "q1-RS"
+    );
+
+    expect(checkboxResult).toBeDefined();
+    const surveillance = checkboxResult.choiceData.find(
+      (choice: any) => choice.en === "Surveillance"
+    );
+    expect(surveillance.fr).toEqual("Surveillance");
+  });
+});
