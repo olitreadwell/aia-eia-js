@@ -30,7 +30,7 @@
 - #609 (PDF accessibility) - open bug, complex pdfmake/pdfkit internals, not tractable
 
 ## Gap ledger (dedupe - READ FIRST, never re-pick)
-- 2026-09-05 issue #1148 (self-found root cause) - pr-opened - fixed choiceData.fr empty fallback in store.ts; regression test added
+- 2026-09-05 issue #1148 (self-found root cause) - pr-opened - PR #1 https://github.com/olitreadwell/aia-eia-js/pull/1 - fixed choiceData.fr empty fallback in store.ts; regression test added; fork CI green (build success)
 
 ## Mined gaps (discovered, not yet attempted)
 - 2026-09-05 tests/CI: repo has only 2 unit test suites; no test for MultiChoiceResult.vue getItemLabel locale path - status: proposed (component test needs vue-jest/deasync, not run locally)
