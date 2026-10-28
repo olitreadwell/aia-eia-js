@@ -419,7 +419,9 @@ const store: StoreOptions<RootState> = {
             result.choiceData.push({
               /* eslint-disable security/detect-object-injection */
               en: choices[i].locText.getLocaleText("default"),
-              fr: choices[i].locText.getLocaleText("fr")
+              fr:
+                choices[i].locText.getLocaleText("fr") ||
+                choices[i].locText.getLocaleText("default")
             });
           }
         }
